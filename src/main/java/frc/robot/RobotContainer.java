@@ -28,16 +28,16 @@ public class RobotContainer {
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   private final SubsystemPneumatics pneumatics = new SubsystemPneumatics();
-  private final SubsystemLights lights = new SubsystemLights(60);
-
+  
   private final PneumaticForward tiltForward = new PneumaticForward(pneumatics);
   private final PneumaticReverse tiltReverse = new PneumaticReverse(pneumatics);
-
+  
+  private final SubsystemLights lights = new SubsystemLights(60);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-
+    
     SmartDashboard.putData("Forward", tiltForward);
     SmartDashboard.putData("Reverse", tiltReverse);
     SmartDashboard.putData("Trigger Lights", Commands.runOnce(()-> {lights.setLights(0, 59, (int)SmartDashboard.getNumber("R", 100), (int)SmartDashboard.getNumber("G", 100), (int)SmartDashboard.getNumber("B", 100));}, lights));
