@@ -8,11 +8,12 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.PneumaticForward;
-import frc.robot.commands.PneumaticReverse;
+import frc.robot.commands.Pneumatics.PneumaticForward;
+import frc.robot.commands.Pneumatics.PneumaticReverse;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.SubsystemLights;
 import frc.robot.subsystems.SubsystemPneumatics;
+import frc.robot.subsystems.SubsystemTalon;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 
@@ -33,6 +34,8 @@ public class RobotContainer {
   private final PneumaticReverse tiltReverse = new PneumaticReverse(pneumatics);
   
   private final SubsystemLights lights = new SubsystemLights(60);
+
+  private final SubsystemTalon talon = new SubsystemTalon(0);
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
@@ -44,8 +47,10 @@ public class RobotContainer {
     SmartDashboard.putNumber("R", 0);
     SmartDashboard.putNumber("G", 0);
     SmartDashboard.putNumber("B", 0);
+    SmartDashboard.putNumber("DrivePower", 0);
+    SmartDashboard.putData("DrivePower", Commands.run(()->{talon.setPower(SmartDashboard.getNumber("Motor Power", 0));}, talon));
   }
-
+  
   /**
    * Use this method to define your button->command mappings. Buttons can be created by
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
