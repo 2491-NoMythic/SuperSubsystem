@@ -21,9 +21,9 @@ public class SubsystemPneumatics extends SubsystemBase {
   private DoubleSolenoid solenoid;
   private Compressor compressor;
 
-  public SubsystemPneumatics() {
+  public SubsystemPneumatics(int Forward, int Reverse) {
     compressor = new Compressor(PneumaticsModuleType.CTREPCM);
-    solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.Pneumatics.FORWARD_CHANNEL, Constants.Pneumatics.REVERSE_CHANNEL);
+    solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Forward, Reverse);
     compressor.enableDigital();
   }
 

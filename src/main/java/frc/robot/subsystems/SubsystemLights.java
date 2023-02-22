@@ -12,8 +12,8 @@ public class SubsystemLights extends SubsystemBase {
   /** Creates a new SubsystemLights. */
   private AddressableLED lights;
   private AddressableLEDBuffer LEDBuffer;
-  public SubsystemLights(int LedCount) {
-    lights = new AddressableLED(6);
+  public SubsystemLights(int LedCount, int PortNumber) {
+    lights = new AddressableLED(PortNumber);
     LEDBuffer = new AddressableLEDBuffer(LedCount);
     lights.setLength(LedCount);
   }
