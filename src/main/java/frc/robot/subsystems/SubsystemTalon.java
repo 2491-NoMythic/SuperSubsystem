@@ -21,6 +21,14 @@ public class SubsystemTalon extends SubsystemBase {
     motor.set(ControlMode.PercentOutput, power);
   }
 
+  public void resetEncoders(){
+    motor.setSelectedSensorPosition(0);
+  }
+
+  public double getEncoder(){
+    return motor.getSelectedSensorPosition();
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
